@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  nginx:
+    container_name: dev_web
+    restart: on-failure
+    image: nginx:1.19.8
+    volumes:
+      - ./nginx/prod/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/app/static
+    ports:
+      - "80:80"
+    depends_on:
+      - website
+  website:
+    container_name: dev_backend
+    build: .
+    restart: always
+    env_file: dev.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+    depends_on:
+      - db_migrate
+    ports:
+      - "8000:8000"
+  db_migrate:
+    image: template-website:latest
+    command: python manage.py migrate
+    #volumes: *service-volumes
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  static_volume:
+  postgres_data:
+  db-data:

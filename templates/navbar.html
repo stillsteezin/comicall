@@ -4,6 +4,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        {% url 'play' as play_url%}
+                        <li class="nav-item"><a class="nav-link {%if request.path == play_url %}active{% endif %}" href="{{% url 'play' %}}
+                        {% url 
                         <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
                     </ul>
@@ -12,11 +15,3 @@
         </nav>
 
 
-<div>
-    {% url 'index' as index_url%}
-    <span>{% if request.path == index_url %}Home{% else %} <a href="/">Home</a>{% endif %} </span>
-    {% url 'about' as about_url%}
-    <span><a href="{% url 'about' %}">About</a></span>
-    {% url 'learn_more' as learn_more_url%}
-    <span><a href="{% url 'learn_more' %}">Learn More</a></span>
-</div>

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html")), #root url
     path('play', views.play, name="play"),
     path('accounts/profile', views.ProfileView.as_view(), name="profile"),
-    path('login', auth_views.LoginView.as_view(template_name="accounts/login.html"), name='login')
+    path('login', auth_views.LoginView.as_view(template_name="accounts/login.html"), name='login'),
+    path('signup', views.signup, name="signup")
 
 ]

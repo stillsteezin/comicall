@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb://localhost:27017/usersDBTT", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://ritika:ritika@cluster0.x12mv.mongodb.net/usersDBTT", {useNewUrlParser: true});
 
 const userSchema = new mongoose.Schema ({
     name: String,
@@ -81,5 +81,5 @@ app.post("/login", function(req, res) {
 
 
 app.listen(3000, function() {
-    console.log("Server started on poart 3000");
+    console.log("Server started on port 3000");
 });

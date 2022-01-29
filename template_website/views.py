@@ -8,10 +8,6 @@ def index(request):
     return HttpResponse(template.render({}, request))
 
 
-def about(request):
-    return render(request, 'about.html')
-
-
-def learn_more(request):
-    return render(request, 'learn_more.html')
+def play(request):
+    return render(request, 'play.html')
 
